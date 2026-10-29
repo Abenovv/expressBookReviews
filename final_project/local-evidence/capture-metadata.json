@@ -1,0 +1,11 @@
+{
+  "captured_at_utc": "2026-10-29T07:30:12.298Z",
+  "base_url": "http://127.0.0.1:58432",
+  "method": "Actual local HTTP server and curl processes; no fabricated output",
+  "command_rendering": "Commands shown with POSIX/Git Bash quoting; actual curl executable was called with the same argument values.",
+  "credentials": "Synthetic local app demo credentials only; no real account credentials used",
+  "persistence": "In-memory demo users, sessions and reviews; server stopped after capture",
+  "public_fork_created": false,
+  "published": false,
+  "submitted_for_grading": false
+}

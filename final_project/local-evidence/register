@@ -1,0 +1,2 @@
+curl.exe '-sS' '--fail-with-body' '--noproxy' '*' '-X' 'POST' '-H' 'Content-Type: application/json' '--data-raw' '{"username":"labreader","password":"synthetic-demo-only"}' 'http://127.0.0.1:58432/register'
+{"message":"User successfully registered"}

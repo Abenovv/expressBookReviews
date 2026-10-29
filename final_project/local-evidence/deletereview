@@ -1,0 +1,2 @@
+curl.exe '-sS' '--fail-with-body' '--noproxy' '*' '-X' 'DELETE' '-b' 'C:\Users\yerke\OneDrive\Desktop\2-nd trimestr\study-system\drafts\2026-10-29\node-book-review\final_project\local-evidence\local-demo-session.cookies' 'http://127.0.0.1:58432/customer/auth/review/1'
+{"message":"Your review was deleted","reviews":{}}

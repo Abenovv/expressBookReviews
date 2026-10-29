@@ -1,4 +1,7 @@
 # Distribution / packaging
 node_modules
 
+# Generated synthetic local demo session; not project evidence for publication.
+final_project/local-evidence/*.cookies
+
 

@@ -1,0 +1,19 @@
+
+> bookshop@1.0.1 test
+> node --test test/*.test.js
+
+▶ bookshop REST, authentication, ownership, concurrency and Axios clients
+  ✔ original catalog, ISBN, author, title, reviews and missing books (157.2793ms)
+  ✔ registration, duplicate rejection, invalid login and session creation (593.8679ms)
+  ✔ anonymous writes denied; each session can change/delete only its own review (206.5643ms)
+  ✔ simultaneous duplicate registrations cannot create conflicting accounts (154.981ms)
+  ✔ four Axios methods perform actual HTTP requests and propagate errors (44.8283ms)
+✔ bookshop REST, authentication, ownership, concurrency and Axios clients (1241.5927ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2704.794

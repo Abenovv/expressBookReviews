@@ -1,0 +1,4 @@
+curl.exe '-sS' '--fail-with-body' '--noproxy' '*' '-X' 'PUT' '-b' 'C:\Users\yerke\OneDrive\Desktop\2-nd trimestr\study-system\drafts\2026-10-29\node-book-review\final_project\local-evidence\local-demo-session.cookies' 'http://127.0.0.1:58432/customer/auth/review/1?review=A%20thoughtful%20and%20engaging%20book.'
+{"message":"Review added or modified","reviews":{"labreader":"A thoughtful and engaging book."}}
+curl.exe '-sS' '--fail-with-body' '--noproxy' '*' '-X' 'PUT' '-b' 'C:\Users\yerke\OneDrive\Desktop\2-nd trimestr\study-system\drafts\2026-10-29\node-book-review\final_project\local-evidence\local-demo-session.cookies' 'http://127.0.0.1:58432/customer/auth/review/1?review=Updated%3A%20a%20thoughtful%20book%20with%20memorable%20characters.'
+{"message":"Review added or modified","reviews":{"labreader":"Updated: a thoughtful book with memorable characters."}}
