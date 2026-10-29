@@ -15,3 +15,7 @@ The server listens only on `127.0.0.1`, on port 5000 unless `PORT` is provided. 
 `npm test` exercises actual local HTTP requests, concurrent users, access restrictions, and the Axios methods. `node scripts/capture-evidence.js` creates genuine local curl output in `final_project/local-evidence`; its synthetic session-cookie file is excluded from Git.
 
 This implementation and supporting documentation were prepared with AI assistance. The learner must review permitted assistance rules and any personal declarations before assessed use. Local code, tests, and captured HTTP responses do not establish platform grades or completion. See `DRAFT_REVIEW.md` for provenance and outstanding review items.
+
+## Authorized publication
+
+The reviewed implementation is published at https://github.com/Abenovv/expressBookReviews . GitHub confirms its actual parent is `ibm-developer-skills-network/expressBookReviews`; the live API response value is retained in `final_project/local-evidence/githubrepo`. This publication does not establish a Coursera grade or certificate.

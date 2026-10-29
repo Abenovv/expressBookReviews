@@ -30,10 +30,10 @@ The first test invocation could not access loopback networking in the restricted
 
 1. All fourteen lab requirements have been mapped below; the current grading form and permitted assistance rules still need inspection. No local mapping establishes a platform pass.
 2. Verify any course-specific permitted AI-use rules before using this draft as assessed work. A grader using AI is not permission to claim AI-generated work as unaided work.
-3. If authorized, create the learner's actual fork and publish reviewed changes; then capture its real parent full name and actual `general.js` public URL. Task 14 specifically queries `.parent.full_name`, whose expected real value is `ibm-developer-skills-network/expressBookReviews`; a clone URL is not the exact required output. No fork or URL evidence is fabricated locally.
+3. Publication was subsequently authorized and completed: actual public fork https://github.com/Abenovv/expressBookReviews . The GitHub API verified `.parent.full_name` as `ibm-developer-skills-network/expressBookReviews`; actual output is saved in `final_project/local-evidence/githubrepo`. Public implementation: https://github.com/Abenovv/expressBookReviews/blob/main/final_project/router/general.js .
 4. Review and submit actual deliverables through the approved route only after personal declarations/terms are handled by the learner. Verify the real project grade and certificate separately.
 
-No remote write, publication, push, or course submission was performed by this worker.
+The original local implementation worker performed no remote write. A separately authorized publication pass committed the reviewed files and pushed normally to the verified learner fork. No course submission or personal declaration was performed during publication.
 
 ## Detailed task mapping
 
@@ -44,5 +44,5 @@ No remote write, publication, push, or course submission was performed by this w
 | 7 | customer/login; session-level signed JWT; login output | Implemented; genuine login curl output; isolated user sessions tested |
 | 8 | PUT review query parameter; add/update under session username; reviewadded output | Implemented; query-protocol evidence captured; ownership and concurrent users tested |
 | 9 | DELETE auth/review/:isbn for the session user's review only; deletereview output | Implemented; genuine curl output and ownership tests |
-| 10–13 | Four Axios promise/async methods in general.js; actual published general.js URL | Code implemented and actual local HTTP helper results captured; public URL remains pending |
-| 14 | Actual public fork, committed/pushed implementation, githubrepo curl output of parent.full_name | No remote operation performed; genuinely pending |
+| 10–13 | Four Axios promise/async methods in general.js; actual published general.js URL | Code implemented, real local HTTP helper results captured, and public general.js URL verified |
+| 14 | Actual public fork, committed/pushed implementation, githubrepo curl output of parent.full_name | Public fork created; reviewed implementation pushed; API parent output genuinely captured in githubrepo |
