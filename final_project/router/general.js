@@ -1,43 +1,82 @@
+const axios = require('axios');
 const express = require('express');
-let books = require("./booksdb.js");
-let isValid = require("./auth_users.js").isValid;
-let users = require("./auth_users.js").users;
-const public_users = express.Router();
+const books = require('./booksdb');
+const { registerUser } = require('./auth_users');
 
+const general = express.Router();
+const catalogClient = axios.create({ timeout: 5000, proxy: false });
 
-public_users.post("/register", (req,res) => {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
+general.post('/register', registerUser);
+general.get('/', (req, res) => res.json(books));
+
+general.get('/isbn/:isbn', (req, res) => {
+  const { isbn } = req.params;
+  if (!Object.hasOwn(books, isbn)) {
+    return res.status(404).json({ message: 'Book not found.' });
+  }
+  return res.json(books[isbn]);
 });
 
-// Get the book list available in the shop
-public_users.get('/',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
+function matchingBooks(field, value) {
+  const search = value.trim().toLowerCase();
+  return Object.fromEntries(Object.entries(books).filter(([, book]) => {
+    return book[field].toLowerCase() === search;
+  }));
+}
+
+general.get('/author/:author', (req, res) => {
+  res.json(matchingBooks('author', req.params.author));
 });
 
-// Get book details based on ISBN
-public_users.get('/isbn/:isbn',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
- });
-  
-// Get book details based on author
-public_users.get('/author/:author',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
+general.get('/title/:title', (req, res) => {
+  res.json(matchingBooks('title', req.params.title));
 });
 
-// Get all books based on title
-public_users.get('/title/:title',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
+general.get('/review/:isbn', (req, res) => {
+  const { isbn } = req.params;
+  if (!Object.hasOwn(books, isbn)) {
+    return res.status(404).json({ message: 'Book not found.' });
+  }
+  return res.json(books[isbn].reviews);
 });
 
-//  Get book review
-public_users.get('/review/:isbn',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
-});
+async function getAllBooks(baseURL) {
+  const response = await catalogClient.get('/', { baseURL });
+  return response.data;
+}
 
-module.exports.general = public_users;
+async function getBookByISBN(baseURL, isbn) {
+  const response = await catalogClient.get(`/isbn/${encodeURIComponent(isbn)}`, { baseURL });
+  return response.data;
+}
+
+async function getBooksByAuthor(baseURL, author) {
+  const response = await catalogClient.get(`/author/${encodeURIComponent(author)}`, { baseURL });
+  return response.data;
+}
+
+async function getBooksByTitle(baseURL, title) {
+  const response = await catalogClient.get(`/title/${encodeURIComponent(title)}`, { baseURL });
+  return response.data;
+}
+
+function respondWithCatalog(lookup, parameter) {
+  return async (req, res) => {
+    try {
+      const result = await lookup(req.app.locals.catalogUrl, req.params[parameter]);
+      return res.json(result);
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        return res.status(error.response.status).json(error.response.data);
+      }
+      return res.status(502).json({ message: 'Could not retrieve the book catalog.' });
+    }
+  };
+}
+
+general.get('/asyncbooks', respondWithCatalog(getAllBooks));
+general.get('/asyncisbn/:isbn', respondWithCatalog(getBookByISBN, 'isbn'));
+general.get('/asyncauthor/:author', respondWithCatalog(getBooksByAuthor, 'author'));
+general.get('/asynctitle/:title', respondWithCatalog(getBooksByTitle, 'title'));
+
+module.exports = { general, getAllBooks, getBookByISBN, getBooksByAuthor, getBooksByTitle };
